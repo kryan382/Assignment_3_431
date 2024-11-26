@@ -1,11 +1,13 @@
 (*Problem: 1*)
 ("Author:  Brandon*)
 
+A(λx.λy.y)B
 
 (*********************************)
 (*Problem: 2*)
 ("Author:  Brandon*)
 
+[A(λx.λy.y)(λx.λy.x)](λx.λy.x)[B(λx.λy.y)(λx.λy.x)]
 
 (*********************************)
 (*Problem: 3*)
