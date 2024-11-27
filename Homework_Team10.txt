@@ -60,6 +60,7 @@ Thus, (x,y)=(2^n+1+1,2^n+1), n ≥ 0.
 ("Author:  Rebecca*)
 
 x = Empty
+a = the value stored in the current node
 Reflect of Empty Tree: reflect(Empty) = Empty
 Inorder of Reflect(Empty): inorder(Empty) = []
 Reverse of Inorder of Reflect(Empty): rev([]) = []
@@ -93,5 +94,44 @@ Therefore,
 (*********************************)
 (*Problem: 6*)
 ("Author:  Rebecca*)
+
+x = Empty
+a = the value stored in the current node
+Reflect of Empty: reflect(Empty) = Empty
+Postorder of Reflect(Empty): postorder(Empty) = []
+Preorder of Empty: preorder(Empty) = []
+Reverse of Preorder of Empty: rev([]) = []
+
+Therefore, postorder(reflect(Empty)) = [] = rev(preorder(Empty))
+
+Now assume: when l = left, r = right
+postorder(reflect(l)) = rev(preorder(l))
+postorder(reflect(r)) = rev(preorder(r))
+
+1.) Reflect of a Node: reflect(Node(a, l, r)) = Node(a, reflect(r), reflect(l))
+2.) Postorder of Reflect(Node): 
+     postorder(Node(a, reflect(r), reflect(l))) = postorder(reflect(r))@postorder(reflect(l))@[a]
+     Using the inductive hypothesis:
+          postorder(reflect(r)) = rev(preorder(r))
+          postorder(reflect(l)) = rev(preorder(l))
+     Rewritten as: 
+          rev(preorder(r))@rev(preorder(l))@[a]
+3.) Preorder of a Node: preorder(Node(a, l, r)) = [a]@preorder(l)@preorder(r)
+4.) Reverse pf Preorder of Node:
+     Now can find rev(preorder(Node(a, l, r))) as:
+          rev(preorder(Node(a, l, r))) = rev([a]@preorder(l)@preorder(r))
+     Becomes:
+          (using the property of list reversal: rev(x@y) = rev(y)@rev(x))
+          rev(preorder(r))@rev(preorder(l))@rev([a])
+     Since rev([a]) = [a],
+          rev(preorder(r))@rev(preorder(l))@[a]
+          This is equivalent to: postorder(reflect(Node(a, l, r)))
+
+Therefore,
+     postorder(reflect(Node(a, l, r))) = rev(preorder(Node(a, l, r)))
+     By structural induction it is proven that: postorder(reflect(x)) = rev(preorder(x))
+
+
+
 
 
