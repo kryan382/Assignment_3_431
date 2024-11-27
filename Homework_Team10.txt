@@ -59,7 +59,39 @@ Thus, (x,y)=(2^n+1+1,2^n+1), n ≥ 0.
 (*Problem: 5*)
 ("Author:  Rebecca*)
 
+x = Empty
+Reflect of Empty Tree: reflect(Empty) = Empty
+Inorder of Reflect(Empty): inorder(Empty) = []
+Reverse of Inorder of Reflect(Empty): rev([]) = []
+
+Therefore, rev(inorder(reflect(Empty))) = [] = inorder(Empty)
+
+Now assume: when l = left, r = right
+rev(inorder(reflect(l))) = inorder(l)
+rev(inorder(reflect(r))) = inorder(r)
+
+1.) Reflecting a node: reflect(Node(a,l,r)) = Node(a, reflect(r),reflect(l))
+2.) Inorder of reflect(node):
+     inorder(Node(a, reflect(r),reflect(l)) = inorder(reflect(r))@[a]@inorder(reflect(l))
+     Using the inductive hypothesis:
+          inorder(reflect(r)) = rev(inorder(r))
+          inorder(reflect(l)) = rev(inorder(l))
+     Rewritten as:
+          rev(inorder(r))@[a]@rev(inorder(l))
+3.)Reverse of inorder of reflect(node)
+     Now can find rev(inorder(reflect(Node(a,l,r)))) as:
+          (using the property of list reversal: rev(x@y) = rev(y)@rev())
+          rev(rev(inorder(r)))@rev([a])@rev(rev(inorder(l)))
+     Since rev(rev(x)) = x,
+          inorder(r)@[a]@inorder(l)
+          This is equivalent to: inorder(Node(a,l,r))
+
+Therefore,
+     rev(inorder(reflect(Node(a,l,r)))) = inorder(Node(a,l,r))
+     By structural induction it is proven that: rev(inorder(reflect(x))) = inorder(x)
 
 (*********************************)
 (*Problem: 6*)
 ("Author:  Rebecca*)
+
+
